@@ -29,8 +29,8 @@ const notes = ({notes}) => {
 export default notes;
 
 export async function getServerSideProps() {
-    console.log(`${process.env.VERCEL_URL}/api/note/`)
-    const res = await fetch(`${process.env.VERCEL_URL}/api/note/`)
+
+  const res = await fetch(`${process.env.APP_URL}/api/note/`)
     const {data} = await res.json()
     return {
       props: {notes: data}
