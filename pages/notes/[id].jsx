@@ -17,7 +17,7 @@ export default allNotes;
 // since the url is dynamic having different values for differt params [id] and it will not be catered run time but at build time so no access to params
 
 export async function getStaticPaths(){
-  const resp = await fetch('http://localhost:3000/api/note')
+  const resp = await fetch(`${process.env.APP_BASE_URL}/api/note`)
   const { data } = await resp.json()
 
   const paths = data.map((note)=>({ params: { id: String(note.id)} }))
@@ -26,7 +26,7 @@ export async function getStaticPaths(){
 
 export async function getStaticProps({ params }){
 
-  const response = await fetch(`http://localhost:3000/api/note/${params.id}`);
+  const response = await fetch(`${process.env.APP_BASE_URL}/api/note/${params.id}`);
   const { data } = await response.json()
 
   return {
