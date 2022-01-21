@@ -3,11 +3,11 @@
 
 import { jsx } from 'theme-ui'
 
-const allNotes = ({note}) => {
+const allNotes = () => {
 
   return (
     <div sx={{variant: 'containers.page'}}>
-      <h1>Note: {note.title} </h1>
+      <h1>Note </h1>
     </div>
   )
 }
