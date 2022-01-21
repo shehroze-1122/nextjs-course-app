@@ -17,6 +17,7 @@ export default allNotes;
 // since the url is dynamic having different values for differt params [id] and it will not be catered run time but at build time so no access to params
 
 export async function getStaticPaths(){
+  console.log(`${process.env.VERCEL_URL}/api/note`)
   const resp = await fetch(`${process.env.VERCEL_URL}/api/note`)
   const { data } = await resp.json()
 
