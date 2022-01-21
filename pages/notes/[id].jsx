@@ -3,11 +3,11 @@
 
 import { jsx } from 'theme-ui'
 
-const allNotes = () => {
+const allNotes = ({note}) => {
 
   return (
     <div sx={{variant: 'containers.page'}}>
-      <h1>Note </h1>
+      <h1>Note: {note.title} </h1>
     </div>
   )
 }
@@ -16,22 +16,22 @@ export default allNotes;
 // can be accomplished using simply getServerSideProps or otherwise you cannot use only getStaticProps
 // since the url is dynamic having different values for differt params [id] and it will not be catered run time but at build time so no access to params
 
-// export async function getStaticPaths(){
-//   const resp = await fetch(`${process.env.APP_BASE_URL}/api/note`)
-//   const { data } = await resp.json()
+export async function getStaticPaths(){
+  const resp = await fetch(`${process.env.APP_BASE_URL}/api/note`)
+  const { data } = await resp.json()
 
-//   const paths = data.map((note)=>({ params: { id: String(note.id)} }))
-//   return { paths, fallback: false }
-// }
+  const paths = data.map((note)=>({ params: { id: String(note.id)} }))
+  return { paths, fallback: false }
+}
 
-// export async function getStaticProps({ params }){
+export async function getStaticProps({ params }){
 
-//   const response = await fetch(`${process.env.APP_BASE_URL}/api/note/${params.id}`);
-//   const { data } = await response.json()
+  const response = await fetch(`${process.env.APP_BASE_URL}/api/note/${params.id}`);
+  const { data } = await response.json()
 
-//   return {
-//     props: {
-//       note: data
-//     }
-//   }
-// }
+  return {
+    props: {
+      note: data
+    }
+  }
+}
