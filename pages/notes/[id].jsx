@@ -25,7 +25,6 @@ export async function getStaticPaths(){
 }
 
 export async function getStaticProps({ params }){
-
   const response = await fetch(`${process.env.VERCEL_URL}api/note/${params.id}`);
   const { data } = await response.json()
 
